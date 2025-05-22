@@ -1,12 +1,13 @@
-import pygame, os, time
+import pygame, os, time, random
 from pygame.locals import *
+from data.func import *  #import the function from your other file
 
 pygame.init()
 
 #screen adjustment
 os.environ["SDL_VIDEO_CENTERED"] = "1" #center the window
 screen = pygame.display.set_mode((1280,720),pygame.RESIZABLE)
-    #info = pygame.display.Info()    #get screen info
+    #info = pygame.display.Info()    #get screen info, saved for future update!
     #screen_width = info.current_w
     #screen_height = info.current_h
     #screen = pygame.display.set_mode((screen_width - 10,screen_height - 50),pygame.RESIZABLE) #creating the game window with current screen
@@ -22,34 +23,24 @@ run = True
 GREEN = (0, 127, 0)
 RED = (235, 0, 0)
 
+#cards
+resized_image = scaling(200,"resources\cards better/rub.png")  #resize img with function, ()for adding height and path for the file
+#resized card is 200 x 290px
 
-img = pygame.image.load("resources\cards better/3_of_clubs.png")
-img.convert()
-rect = img.get_rect()
-moving = False
-
+x=20
 while run: 
     #shutting the game down 
     for event in pygame.event.get():    
         if event.type == pygame.QUIT:
             run = False
 
-        elif event.type == MOUSEBUTTONDOWN:
-            if rect.collidepoint(event.pos):
-                moving = True
-
-        elif event.type == MOUSEBUTTONUP:
-            moving = False
-
-        elif event.type == MOUSEMOTION and moving:
-            rect.move_ip(event.rel)
+    x+=1
 
 
-
-    #background
     screen.fill(GREEN)
-    screen.blit(img, rect)
-    pygame.draw.rect(screen, RED, rect, 1)
+    screen.blit(resized_image,(1100,20))    #card deck
+    
+
     #updatuje display
     pygame.display.update()
     #aby to běželo na počet fps
