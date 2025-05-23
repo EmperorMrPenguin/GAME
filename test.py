@@ -6,7 +6,7 @@ screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
 # Load card image
-card_img = pygame.image.load("card.png").convert_alpha()
+card_img = pygame.image.load("resources\cards better/2_of_clubs.png").convert_alpha()
 card_rect = card_img.get_rect()
 card_rect.topleft = (100, 100)  # Start position
 
