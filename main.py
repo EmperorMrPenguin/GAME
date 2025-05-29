@@ -26,7 +26,7 @@ RED = (235, 0, 0)
 #cards
 target_pos = (100, 50) # x, y
 
-d_card_pos = [(20, 20), (20, 20), (400, 20)] #positin of dealers cards
+d_card_pos = [(20, 20), (200, 20), (400, 20)] #positin of dealers cards
 
 
 speed = 50  # Pixels per frame (how fast is the animation)
@@ -115,11 +115,14 @@ while run:
 
 
     if clicked_4:
-        card_rect.topleft = move_towards(card_rect.topleft, d_card_pos[d_pos], speed)
-    elif card_rect.topleft == d_card_pos[d_pos]:
-        d_pos+=1
-        clicked_4 = False
-        print(iehutrhgoewriug)
+        if d_pos < len(d_card_pos):
+            card_rect.topleft = move_towards(card_rect.topleft, d_card_pos[d_pos], speed)
+            if card_rect.topleft == d_card_pos[d_pos]:
+                d_pos += 1
+        else:
+            clicked_4 = False  # Reset after animation is done
+            print("Animation complete")
+
 
 
 
